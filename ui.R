@@ -18,7 +18,10 @@ sp1 <- sp %>%
   mutate(FTP1 = mean(FTP)) %>% 
   mutate(ThreePP1 = mean(ThreePP)) %>% 
   mutate(TwoPP1 = mean(TwoPP)) %>% 
-  distinct(Player, .keep_all = TRUE)
+  distinct(Player, .keep_all = TRUE) %>% 
+  filter(FTP1 < .905 & FTP1 > 0, ThreePP1 < .456 & ThreePP1 > 0 & TwoPP1 < .675 & TwoPP1 > 0) %>% 
+  filter(Pos %in% c("C","PF","PG","SF", "SG"))
+
 
 fluidPage(
   sidebarLayout(
